@@ -29,7 +29,7 @@ test('Special Number color', async ({ page }) => {
   await numberInput.type("2");
   await submitButton.click();
   await expect(page.locator('id=validNumber')).toBeVisible;
-  await expect(page.locator('css=specialNumber')).toHaveCSS("color", "#26fbeb");
+  await expect(page.locator('.specialNumber').first()).toHaveCSS("color", "rgb(38, 251, 235)"); // Locator API is strict, meaning if it finds more than one element, it will throw
 })
 
 test("Interaction with inputs - 1 is a valid number and odd", async ({ page }) => {
