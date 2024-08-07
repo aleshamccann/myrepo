@@ -94,6 +94,33 @@ test('Drag and Drop - Columns', async ({ page }) => {
   await expect(page.locator('#column-b')).toHaveText('First');
 });
 
+test('Planet Weights', async ({ page }) => {
+  await page.goto('https://testerstories.com/xyzzy/planets.html');
+  await page.locator('id=wt').scrollIntoViewIfNeeded();
+  const inputWeight = "148";
+  await page.getByLabel('Enter Your Weight:').fill(inputWeight);
+  await page.getByRole('button', { name: 'Calculate' }).click();
+  const sunCalculatedWeight = ((10 * Number(inputWeight) * 27.072) / 10).toString();
+  await expect(page.locator('#outputsun')).toHaveValue(sunCalculatedWeight);
+  const mercuryCalculatedWeight = ((10 * Number(inputWeight) * .378) / 10).toString();
+  await expect(page.locator('#outputmrc')).toHaveValue(mercuryCalculatedWeight);
+  const lunaCalculatedWeight = ((10 * Number(inputWeight) * .166) / 10).toString();
+  await expect(page.locator('#outputluna')).toHaveValue(lunaCalculatedWeight);
+  const venusCalculatedWeight = ((10 * Number(inputWeight) * .907) / 10).toString();
+  await expect(page.locator('#outputvn')).toHaveValue(venusCalculatedWeight);
+  const marsCalculatedWeight = ((10 * Number(inputWeight) * .377) / 10).toString();
+  await expect(page.locator('#outputmars')).toHaveValue(marsCalculatedWeight);
+  const jupiterCalculatedWeight = ((10 * Number(inputWeight) * 2.364) / 10).toString();
+  await expect(page.locator('#outputjp')).toHaveValue(jupiterCalculatedWeight);
+  const saturnCalculatedWeight = ((10 * Number(inputWeight) * 1.064) / 10).toString();
+  await expect(page.locator('#outputsat')).toHaveValue(saturnCalculatedWeight);
+  const uranusCalculatedWeight = ((10 * Number(inputWeight) * .889) / 10).toString();
+  await expect(page.locator('#outputur')).toHaveValue(uranusCalculatedWeight);
+  const neptuneCalculatedWeight = ((10 * Number(inputWeight) * 1.125) / 10).toString();
+  await expect(page.locator('#outputnpt')).toHaveValue(neptuneCalculatedWeight);
+  const plutoCalculatedWeight = ((10 * Number(inputWeight) * .067) / 10).toString();
+  await expect(page.locator('#outputplt')).toHaveValue(plutoCalculatedWeight);
+});
 
 
 
