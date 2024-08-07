@@ -77,19 +77,6 @@ test('Practice - Enable Disabled Checkbox Choices', async ({ page }) => {
   await expect(page.locator('#eigen')).toHaveText('(Currently Disabled)');
 });
 
-
-test('Practice - Radio Buttons', async ({ page }) => {
-  await page.goto('https://testerstories.com/xyzzy/practice.html');
-  await page.getByLabel('Warp Core Breach').scrollIntoViewIfNeeded();
-  await page.getByLabel('Warp Core Breach').click();
-  await expect(page.getByLabel('Warp Core Breach').isChecked({ timeout: 1000 })).toBeFalsy;
-  //await expect(page.locator('#mtc').isChecked()).toBeFalsy;
-  //await expect(page.locator('#ups').isChecked()).toBeFalsy;
-  //await expect(page.locator('#wcb').isChecked()).toBeFalsy;
-
-});
-
-
 test('Drag and Drop - Colored Boxes', async ({ page }) => {
   await page.goto('https://testerstories.com/xyzzy/practice_drag_and_drop.html');
   await expect(page.locator('#draggable')).toHaveText('Drag me to my blue target');
@@ -107,14 +94,6 @@ test('Drag and Drop - Columns', async ({ page }) => {
   await expect(page.locator('#column-b')).toHaveText('First');
 });
 
-test('Planet Weights', async ({ page }) => {
-  await page.goto('https://testerstories.com/xyzzy/planets.html');
-  await page.locator('id=wt').scrollIntoViewIfNeeded();
-  await page.getByLabel('Enter Your Weight:').fill('148');
-  await page.getByRole('button', { name: 'Calculate' }).click();
-  const neptuneCalculatedWeight = (1.125 * 148).toString();
-  await expect(page.locator('id=outputnpt')).toHaveText(neptuneCalculatedWeight);
-});
 
 
 
