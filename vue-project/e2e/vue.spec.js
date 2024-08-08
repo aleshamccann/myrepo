@@ -24,9 +24,9 @@ test('has placeholder', async ({ page }) => {
 test('Special Number color', async ({ page }) => {
   await page.goto('http://localhost:5173/');
   const numberInput = page.locator('id=inputNumber');
-  const submitButton = page.locator("//button[text()='Submit']");
+  const submitButton = page.getByRole('button', { name: 'Submit' });
   await numberInput.scrollIntoViewIfNeeded();
-  await numberInput.type("2");
+  await numberInput.fill("2");
   await submitButton.click();
   await expect(page.locator('id=validNumber')).toBeVisible;
   await expect(page.locator('.specialNumber').first()).toHaveCSS("color", "rgb(38, 251, 235)"); // Locator API is strict, meaning if it finds more than one element, it will throw
@@ -35,10 +35,10 @@ test('Special Number color', async ({ page }) => {
 test("Interaction with inputs - 1 is a valid number and odd", async ({ page }) => {
   await page.goto('http://localhost:5173/');
   const numberInput = page.locator('id=inputNumber');
-  const submitButton = page.locator("//button[text()='Submit']");
+  const submitButton = page.getByRole('button', { name: 'Submit' });
   await numberInput.scrollIntoViewIfNeeded();
   console.log('Before entering data: ' + await numberInput.inputValue());
-  await numberInput.type("1");
+  await numberInput.fill("1");
   console.log('After entering data: ' + await numberInput.inputValue());
   await submitButton.click();
   await expect(page.locator('id=yourNumber')).toHaveText("Your number is: 1");
@@ -51,10 +51,10 @@ test("Interaction with inputs - 1 is a valid number and odd", async ({ page }) =
 test("Interaction with inputs - 89 is a valid number, prime, and Fibonacci", async ({ page }) => {
   await page.goto('http://localhost:5173/');
   const numberInput = page.locator('id=inputNumber');
-  const submitButton = page.locator("//button[text()='Submit']");
+  const submitButton = page.getByRole('button', { name: 'Submit' });
   await numberInput.scrollIntoViewIfNeeded();
   console.log('Before entering data: ' + await numberInput.inputValue());
-  await numberInput.type("1");
+  await numberInput.fill("1");
   console.log('After entering data: ' + await numberInput.inputValue());
   await submitButton.click();
   await expect(page.locator('id=yourNumber')).toHaveText("Your number is: 1");
@@ -69,10 +69,10 @@ test("Interaction with inputs - 89 is a valid number, prime, and Fibonacci", asy
 test("Interaction with inputs - 101 is a not a valid number", async ({ page }) => {
   await page.goto('http://localhost:5173/');
   const numberInput = page.locator('id=inputNumber');
-  const submitButton = page.locator("//button[text()='Submit']");
+  const submitButton = page.getByRole('button', { name: 'Submit' });
   await numberInput.scrollIntoViewIfNeeded();
   console.log('Before entering data: ' + await numberInput.inputValue());
-  await numberInput.type("101");
+  await numberInput.fill("101");
   console.log('After entering data: ' + await numberInput.inputValue());
   await submitButton.click();
   await expect(page.locator('id=yourNumber')).toHaveText("Your number is: 101");
